@@ -1,0 +1,33 @@
+<?php
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use App\Controllers\HomeController;
+use App\Controllers\LoginController;
+use App\Controllers\AdminContorller;
+use App\Controllers\OffreController;
+
+
+$route = isset($_GET['route']) ? $_GET['route'] : 'home';
+if(isset($_POST["submit"])){
+    $submit = $_POST['submit'];
+    switch($submit){
+        case 'updateUser': AdminContorller::updateCandidat($_POST);break;
+    }
+}
+switch ($route) {
+    case 'home':     AdminContorller::index(); break;
+    case 'candidat': AdminContorller::getCandidat(); break;
+    case 'deletCondidat': AdminContorller::deletCondidat($_GET['deletCondidat']);  break;
+    //Crud Offre
+    case 'offre': OffreController::getOffre();  break;
+   
+    
+    // case 'login': $logincontroller = new LoginController(); $logincontroller->login(); break;
+    
+    default:
+        header('HTTP/1.0 404 Not Found');
+        exit('Page not found');
+}
+
+?>

@@ -1,0 +1,17 @@
+{
+    "name": "youcode/jobeasy_mvc",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Amine Formateur",
+            "email": "amine.devinfo@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "symfony/var-dumper": "^6.4"
+    }
+}
