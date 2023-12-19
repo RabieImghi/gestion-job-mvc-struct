@@ -291,6 +291,12 @@
           <span>List Candidat</span>
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link <?php if(!isset($offreToApply)) echo 'collapsed' ?>" href="index.php?route=offreToApply">
+          <i class="bi bi-grid"></i>
+          <span>List Applyed Offre</span>
+        </a>
+      </li>
     </ul>
 
   </aside>

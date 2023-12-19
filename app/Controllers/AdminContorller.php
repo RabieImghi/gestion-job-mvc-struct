@@ -15,11 +15,11 @@ class AdminContorller{
     public static function updateCandidat($formData){
         extract($formData);
         $result=UserModel::updateCandidat($name,$email,$roleuserID,$id_user);
-        if($result){
-            $listUsers = UserModel::getAllCandidat();
-            $RoleUsers = UserModel::GetRoles();
-            return $collections = ['listUsers' => $listUsers , "RoleUsers" => $RoleUsers] ;
-        } 
+        // if($result){
+        //     $listUsers = UserModel::getAllCandidat();
+        //     $RoleUsers = UserModel::GetRoles();
+        //     return $collections = ['listUsers' => $listUsers , "RoleUsers" => $RoleUsers] ;
+        // } 
     }
     public static function deletCondidat($idCondidate){
         $result = UserModel::deletCondidat($idCondidate);

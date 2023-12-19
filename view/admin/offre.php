@@ -1,5 +1,6 @@
 <?php
 ob_start();
+$offre="active";
 ?>
 <button data-bs-toggle="modal" data-bs-target="#addOffer" class="btn btn-success  mb-4 me-4"> Add Offer</button>                
 <table class="agent table align-middle bg-white">
@@ -44,7 +45,7 @@ ob_start();
             <td class="f_position"><?php echo ($job['IsActive']==1)? "Active":"In Active"; ?> </td>
             <td class="f_position"><?php echo ($job['approve']==1)? "Aprouve":"In Aprouve"; ?> </td>
             <td>
-                <a href="index.php?deletJob=<?=$job['jobID']?>&action=deletJob"><img src="assets/img/user-x.svg" alt=""></a>
+                <img src="assets/img/user-x.svg" onclick="supremeConfirm(<?=$job['jobID']?>)" alt="">
                 <img class="ms-2 edit" data-bs-toggle="modal" data-bs-target="#edit<?=$indic?>" src="assets/img/edit.svg" alt="">
             </td>
             <div class="modal fade" id="edit<?=$indic?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -55,7 +56,7 @@ ob_start();
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form id="forms" method='POST' action="index.php">
+                            <form id="forms" method='POST' action="index.php?route=offre">
                                 <div class="row mb-4">
                                     <div class="">
                                         <input placeholder="Title" value='<?=$job['title']?>' type="text" name='title'   class="form-control first_name" >
@@ -103,8 +104,8 @@ ob_start();
                                 </div>
                                 <input type="hidden" name="id_Jobs" value='<?=$job['jobID']?>'>
                                 <div class="d-flex w-100 justify-content-center">
-                                    <input type="submit" name='submit' value='updateJobs' value='Save Edit' class="btn btn-success  mb-4 me-4">
-                                    <button class="btn btn-danger btn-block mb-4 " data-bs-dismiss="modal">Annuler</button>
+                                    <input type="submit" name='submit' value='updateOffre' value='Save Edit' class="btn btn-success  mb-4 me-4">
+                                    <button type='button' class="btn btn-danger btn-block mb-4 " data-bs-dismiss="modal">Annuler</button>
                                 </div>
                             </form>
                         </div>
@@ -126,7 +127,7 @@ ob_start();
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="forms" method='POST' enctype="multipart/form-data" action="index.php">
+                <form id="forms" method='POST' enctype="multipart/form-data" action="index.php?route=offre">
                     <div class="row mb-4">
                         <div class="">
                             <input  type="file" name='photo'   class="form-control first_name" >
@@ -175,7 +176,32 @@ ob_start();
             </div>
         </div>
     </div>
-</div>       
+</div>    
+<script>
+    function supremeConfirm(idOffre){
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+        if (result.isConfirmed) {
+        var xml = new XMLHttpRequest();
+        xml.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+            window.location.reload();
+            }
+        }
+        let url = "index.php?deletOfre="+idOffre+"&route=deletOfre";
+        xml.open("GET", url, true);
+        xml.send();
+        }
+    });
+    }
+</script>   
 <?php
 $content=ob_get_clean();
 include 'header.php';

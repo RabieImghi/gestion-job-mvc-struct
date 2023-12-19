@@ -6,6 +6,7 @@ use App\Controllers\HomeController;
 use App\Controllers\LoginController;
 use App\Controllers\AdminContorller;
 use App\Controllers\OffreController;
+use App\Controllers\offreToApplyController;
 
 
 $route = isset($_GET['route']) ? $_GET['route'] : 'home';
@@ -13,6 +14,13 @@ if(isset($_POST["submit"])){
     $submit = $_POST['submit'];
     switch($submit){
         case 'updateUser': AdminContorller::updateCandidat($_POST);break;
+        //Crud Offre
+        case 'addOfferCrud': OffreController::addOffer($_POST);break;
+        case 'updateOffre': OffreController::updateOffre($_POST);break;
+        //applu online
+        case "aprouve" : offreToApplyController::reponseApply(1,$_POST['idOffer']); break;
+        case "decline" : offreToApplyController::reponseApply(2,$_POST['idOffer']); break;
+        
     }
 }
 switch ($route) {
@@ -21,7 +29,10 @@ switch ($route) {
     case 'deletCondidat': AdminContorller::deletCondidat($_GET['deletCondidat']);  break;
     //Crud Offre
     case 'offre': OffreController::getOffre();  break;
-   
+    case 'deletOfre': OffreController::deletOfre($_GET['deletOfre']);  break;
+
+    //Crude offreToApply
+    case 'offreToApply': offreToApplyController::getOffreToApply();break;
     
     // case 'login': $logincontroller = new LoginController(); $logincontroller->login(); break;
     

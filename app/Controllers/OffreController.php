@@ -9,5 +9,24 @@ class OffreController{
         $collection=["listJobs"=>$listJobs,"tempActiveTable"=>$tempActiveTable,"tempAprouveTable"=>$tempAprouveTable];
         require(__DIR__ .'../../../view/admin/offre.php');
     }
+    public static function addOffer($formData){
+        extract($formData);
+        $currentDateTime = date("Y_m_d_H_i_s");
+        $targetDir = "assets/uploads/"; 
+        $imageName=$currentDateTime. basename($_FILES["photo"]["name"]);
+        $targetFile = $targetDir.$imageName;
+        if (move_uploaded_file($_FILES["photo"]["tmp_name"], $targetFile)) {
+            $result = JobModel::addOffer($title,$description,$entreprise,$location,$IsActive,$approve,$imageName);
+            // if($result) OffreController::getOffre();
+        } 
+    }
+    public static function deletOfre($idOffre){
+        JobModel::deletOfre($idOffre);
+        OffreController::getOffre();
+    }
+    public static function updateOffre($formData){
+        extract($formData);
+        JobModel::UpdateOffre($title,$description,$entreprise,$location,$IsActive,$approve,$id_Jobs);
+    }
 }
 ?>
