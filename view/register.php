@@ -72,7 +72,6 @@
                       <label for="yourEmail" class="form-label">Your Email</label>
                       <input type="email" name="email" class="form-control" id="yourEmail" required>
                       <?php
-                      session_start();
                       if(isset($_SESSION["message_error"])){
                       ?>
                       <div style='color: red;'><?=$_SESSION["message_error"]?></div>

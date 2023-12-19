@@ -10,21 +10,29 @@ class offreToApplyModel {
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+    public static function searchOffre($id){
+        $db = Database::getConnection();
+        $stmt2=$db->prepare("SELECT * FROM applyonline NATURAL JOIN jobs WHERE ApplyOnlineID =?");
+        $stmt2->execute([$id]);
+        $result2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+        return $result2;
+    }
     public static function reponseApply($id,$status){
         $db = Database::getConnection();
+        $jobInformation=offreToApplyModel::searchOffre($id);
+        $idJob=$jobInformation[0]['jobID'];
+        $title=$jobInformation[0]['title'];
+        $entreprise=$jobInformation[0]['entreprise'];
         if($status==1){
             $stmt=$db->prepare("UPDATE applyonline SET Status=1, notification	=1 WHERE ApplyOnlineID=?");
             $stmt->execute([$id]);
-            $stmt2=$db->prepare("SELECT * FROM applyonline WHERE ApplyOnlineID =?");
-            $stmt2->execute([$id]);
-            $result2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
-            $idJob=$result2[0]['jobID'];
             $result=JobModel::updateAprouve($idJob,1);
+            return $collection = ['action'=>'aprouve','idJob'=>$idJob,'title'=>$title,'entreprise'=>$entreprise,];
         }else{
             $stmt=$db->prepare("DELETE  FROM applyonline WHERE ApplyOnlineID=?");
             $stmt->execute([$id]);
+            return $collection = ['action'=>'decline','idJob'=>$idJob,'title'=>$title,'entreprise'=>$entreprise];
         }
-        return true;
     }
 }
 ?>

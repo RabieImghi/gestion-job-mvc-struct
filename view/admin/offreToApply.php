@@ -34,6 +34,8 @@ ob_start();
                 <td class="">
                     <form action="index.php?route=offreToApply" method="POST">
                         <input type="hidden" value='<?=$ApplyOnline["ApplyOnlineID"]?>' name='idOffer'>
+                        <input type="hidden" value='<?=$ApplyOnline["username"]?>' name='username'>
+                        <input type="hidden" value='<?=$ApplyOnline["email"]?>' name='email'>
                         <button type="submit" name='submit' value='aprouve' class="btn btn-success">Apouve</button>
                         <button type="submit" name='submit' value='decline' class="btn btn-danger">Decline</button>
                     </form>
