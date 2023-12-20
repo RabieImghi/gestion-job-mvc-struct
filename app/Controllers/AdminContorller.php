@@ -4,7 +4,13 @@ use App\Models\UserModel;
 
 class AdminContorller{
     public static function index(){
-        require(__DIR__ .'../../../view/admin/index.php'); 
+        if(isset($_SESSION['roleUser'])){
+            if($_SESSION['roleUser']==1) require(__DIR__ .'../../../view/admin/index.php'); 
+            if($_SESSION['roleUser']==2)  require(__DIR__ .'../../../view/user/html/index.php');  
+        }else{
+            require(__DIR__ .'../../../view/user/html/index.php'); 
+        }
+        
     }
     public static function getCandidat(){
         $listUsers = UserModel::getAllCandidat();

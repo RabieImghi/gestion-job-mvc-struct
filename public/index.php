@@ -7,6 +7,7 @@ use App\Controllers\LoginController;
 use App\Controllers\AdminContorller;
 use App\Controllers\OffreController;
 use App\Controllers\offreToApplyController;
+use App\Controllers\UserContorller;
 
 
 $route = isset($_GET['route']) ? $_GET['route'] : 'home';
@@ -15,7 +16,10 @@ if(isset($_POST["submit"])){
     switch($submit){
         //User 
         case 'loginUser': $route = LoginController::loginUser($_POST);break;
+        case 'registerUser':$_SESSION['tempPostRegister']=$_POST; $route=LoginController::registerUser($_POST);break;
+        case 'verfyEmailRegistre':$route=LoginController::verfyEmailRegistre($_POST);break;
         case 'updateUser': AdminContorller::updateCandidat($_POST);break;
+        
         //Crud Offre
         case 'addOfferCrud': OffreController::addOffer($_POST);break;
         case 'updateOffre': OffreController::updateOffre($_POST);break;
@@ -24,12 +28,17 @@ if(isset($_POST["submit"])){
         case "decline" : offreToApplyController::reponseApply(2,$_POST['idOffer'],$_POST['username'],$_POST['email']); break;  
     }
 }
+
 switch ($route) {
     //login
     case 'login': LoginController::login(); break;
     case 'registre': LoginController::registre(); break;
+    case 'emailVerfy': LoginController::emailVerfy(); break;
     
     //User Crud
+    
+
+    case 'homeUser':     UserContorller::index(); break;
     case 'home':     AdminContorller::index(); break;
     case 'candidat': AdminContorller::getCandidat(); break;
     case 'deletCondidat': AdminContorller::deletCondidat($_GET['deletCondidat']);  break;
@@ -40,7 +49,6 @@ switch ($route) {
 
     //Crude offreToApply
     case 'offreToApply': offreToApplyController::getOffreToApply();break;
-    
     
     
     default:

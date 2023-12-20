@@ -61,7 +61,7 @@
                     <p class="text-center small">Enter your personal details to create account</p>
                   </div>
 
-                  <form class="row g-3 needs-validation" method="post" action='scripte.php'>
+                  <form class="row g-3 needs-validation" method="POST" action='index.php'>
                     <div class="col-12">
                       <label for="yourName" class="form-label">Your Name</label>
                       <input type="text" name="name" class="form-control" id="yourName" required>
@@ -91,10 +91,10 @@
                       </div>
                     </div>
                     <div class="col-12">
-                      <button class="btn btn-primary w-100" name="register_submit" type="submit">Create Account</button>
+                      <button class="btn btn-primary w-100" name="submit" value='registerUser' type="submit">Create Account</button>
                     </div>
                     <div class="col-12">
-                      <p class="small mb-0">Already have an account? <a href="login.php">Log in</a></p>
+                      <p class="small mb-0">Already have an account? <a href="index.php?route=login">Log in</a></p>
                     </div>
                   </form>
 

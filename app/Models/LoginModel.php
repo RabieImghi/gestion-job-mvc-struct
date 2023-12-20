@@ -13,6 +13,14 @@ class LoginModel {
             return $row;
         }
     }
+    public static function RegistreUserSucces($name,$email,$password,$roleuserID){
+        $db = Database::getConnection();
+        $stmt=$db->prepare("INSERT INTO users (username,email,passwordHash,roleuserID) VALUES (?,?,?,?)");
+        $newPassHash=MD5($password);
+        $stmt->execute([$name,$email,$newPassHash,$roleuserID]);
+        return $stmt;
+        
+    }
     
 }
 ?>

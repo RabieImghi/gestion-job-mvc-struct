@@ -66,15 +66,13 @@
 
                   <form class="row g-3 needs-validation" method="post" action='index.php'>
 
-
-
                     <div class="col-12">
                       <label style='font-weight: bold;' class="form-label">CODE VERFY : </label>
                       <input type="text" name="verfyEmail" class="form-control"  required>
                     </div>
 
                     <div class="col-12">
-                      <button class="btn btn-primary w-100" name='submit'value='verfyEmail' type="submit">Verfy</button>
+                      <button class="btn btn-primary w-100" name='submit'value='verfyEmailRegistre' type="submit">Verfy</button>
                     </div>
                   </form>
 
