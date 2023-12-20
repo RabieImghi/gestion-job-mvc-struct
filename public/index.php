@@ -1,4 +1,7 @@
 <?php
+
+
+
 session_start();
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -8,8 +11,6 @@ use App\Controllers\AdminContorller;
 use App\Controllers\OffreController;
 use App\Controllers\offreToApplyController;
 use App\Controllers\UserContorller;
-
-
 $route = isset($_GET['route']) ? $_GET['route'] : 'home';
 if(isset($_POST["submit"])){
     $submit = $_POST['submit'];
@@ -25,21 +26,19 @@ if(isset($_POST["submit"])){
         case 'addOfferCrud': OffreController::addOffer($_POST);break;
         case 'updateOffre': OffreController::updateOffre($_POST);break;
         //applu online
+        
         case "aprouve" : offreToApplyController::reponseApply(1,$_POST['idOffer'],$_POST['username'],$_POST['email']); break;
         case "decline" : offreToApplyController::reponseApply(2,$_POST['idOffer'],$_POST['username'],$_POST['email']); break;  
     }
 }
-
 switch ($route) {
     //login
+    case 'pageVide':''; break;
     case 'login': LoginController::login(); break;
     case 'registre':   LoginController::registre(); break;
     case 'emailVerfy': LoginController::emailVerfy(); break;
    
-    
     //User Crud
-    
-
     case 'homeUser':     UserContorller::index(); break;
     case 'home':     AdminContorller::index(); break;
     case 'candidat': AdminContorller::getCandidat(); break;
@@ -51,6 +50,7 @@ switch ($route) {
 
     //Crude offreToApply
     case 'offreToApply': offreToApplyController::getOffreToApply();break;
+    case 'userApplyOffre':offreToApplyController::userApplyOffre($_GET['idOffre']);break;
     
     
     default:

@@ -34,5 +34,19 @@ class offreToApplyModel {
             return $collection = ['action'=>'decline','idJob'=>$idJob,'title'=>$title,'entreprise'=>$entreprise];
         }
     }
+    public static function userApplyOffre($idOffre,$idUser){
+        $db = Database::getConnection();
+        $stmt = $db->prepare("SELECT * FROM applyonline WHERE userID=? AND jobID =?");
+        $stmt->execute([$idUser,$idOffre]);
+        $numRows = $stmt->rowCount();
+        if($numRows==0) {
+            $status=0;
+            $stmt2=$db->prepare("INSERT INTO applyonline (userID,jobID,Status,notification) VALUE (?,?,?,?)");
+            $notification=0;
+            $result=$stmt2->execute([$idUser,$idOffre,$status,$notification]);
+            if($result) return true;
+        }
+        else return false;
+    }
 }
 ?>

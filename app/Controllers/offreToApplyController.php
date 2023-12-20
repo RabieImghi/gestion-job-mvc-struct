@@ -40,5 +40,11 @@ class offreToApplyController{
             PhpMailerSend::sendMail($email,$subject,$message);
         }
     }
+    public static function userApplyOffre($idOffre){
+        $idUser=$_SESSION['idUser'];
+        $res = offreToApplyModel::userApplyOffre($idOffre,$idUser);
+        if($res) echo "ok";
+        else echo "non";
+    }
 }
 ?>

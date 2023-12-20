@@ -554,6 +554,47 @@
             </footer>
         </div>
     </div>
+    <script>
+        function addOffer(idOffer){
+            var xml = new XMLHttpRequest();
+            xml.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    if(xml.responseText=="ok"){
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "You have Apply this Offer with Succes",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    }else{
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "Errore ! You have Already Apply this Offer",
+                        });
+                        
+                    }
+                    console.log(xml.responseText);
+                }
+            };
+            let url = "index.php?route=userApplyOffre&idOffre="+idOffer;
+            xml.open("GET", url, true);
+            xml.send();
+        }
+        function search(typeSearch){
+            let input = document.getElementById(typeSearch);
+            let url = "index.php?value="+input.value+"&type="+typeSearch+"&action=searchJob";
+            let xml = new XMLHttpRequest();
+            xml.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("articles").innerHTML=xml.responseText;
+                }
+            };
+            xml.open("GET", url, true);
+            xml.send();
+        }
+    </script> 
     <script src="user/assets/js/bundle.js?ver=3.1.2"></script>
     <script src="user/assets/js/scripts.js?ver=3.1.2"></script>
 </body>
