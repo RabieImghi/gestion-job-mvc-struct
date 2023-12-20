@@ -1,3 +1,8 @@
+<?php
+if(isset($_SESSION['roleUser']) && $_SESSION['roleUser']==1){
+    header('location: index.php?route=home');
+}
+?>
 <!DOCTYPE html>
 <html lang="zxx" class="js">
 
@@ -258,7 +263,6 @@
                     </div>
                 </div><!-- .container -->
             </section>
-            <main id='jobs'>
 <!-- ------------------------------------------------------------------------------------------- -->
             <?php
             foreach($listjob as $job):
@@ -322,7 +326,6 @@
                 </div>
             </section>
             <?php endforeach ?>
-            </main>
 <!-- ------------------------------------------------------------------------------------------- -->
             <section class="section section-pricing bg-lighter" id="pricing">
                 <div class="container">

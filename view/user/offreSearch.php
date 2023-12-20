@@ -1,4 +1,7 @@
 <?php
+if(isset($_SESSION['roleUser']) && $_SESSION['roleUser']==1){
+    header('location: index.php?route=home');
+}
 foreach($listjob as $job):
 ?>
 <section class="section section-feature pb-0" id="feature">

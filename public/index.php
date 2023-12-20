@@ -34,7 +34,7 @@ switch ($route) {
     case 'login': LoginController::login(); break;
     case 'registre':   LoginController::registre(); break;
     case 'emailVerfy': LoginController::emailVerfy(); break;
-   
+    case 'log_out': session_destroy(); AdminContorller::index(); break;
     //User Crud
     case 'homeUser':     UserContorller::index(); break;
     case 'allOffre':     UserContorller::allOffre(); break;

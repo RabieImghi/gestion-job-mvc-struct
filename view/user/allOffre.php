@@ -1,3 +1,8 @@
+<?php
+if(isset($_SESSION['roleUser']) && $_SESSION['roleUser']==1){
+    header('location: index.php?route=home');
+}
+?>
 <!DOCTYPE html>
 <html lang="zxx" class="js">
 

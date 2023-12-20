@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -254,7 +255,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="index.php?route=login">
+              <a class="dropdown-item d-flex align-items-center" href="index.php?route=log_out">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>

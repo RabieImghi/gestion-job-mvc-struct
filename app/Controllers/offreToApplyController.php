@@ -22,7 +22,8 @@ class offreToApplyController{
             </div></div></body>";
             $subject="Offre Resultat";
             PhpMailerSend::sendMail($email,$subject,$message);
-        }else{
+        }
+        if($result['action']=="decline") {
             $message="<body class='bg-light'><div class='container'>
             <div style='display: flex; justify-content: center;'>
             <img class='ax-center my-10' style='width: 80px;' src='https://assets.bootstrapemail.com/logos/light/square.png' />
@@ -36,7 +37,6 @@ class offreToApplyController{
             Admin
             </div></div></body>";
             $subject="Offre Resultat";
-            $email=$_SESSION['emailUser'];
             PhpMailerSend::sendMail($email,$subject,$message);
         }
     }
