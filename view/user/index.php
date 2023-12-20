@@ -42,6 +42,7 @@
                                     <li class="menu-item"><a href="#feature" class="menu-link nav-link">Features</a></li>
                                     <li class="menu-item"><a href="#pricing" class="menu-link nav-link">Pricing</a></li>
                                     <li class="menu-item"><a href="#reviews" class="menu-link nav-link">Reviews</a></li>
+                                    <li class="menu-item"><a href="index.php?route=allOffre" class="menu-link nav-link">All Offre</a></li>
                                 </ul>
                                 <ul class="menu-btns">
                                     <?php
@@ -257,7 +258,7 @@
                     </div>
                 </div><!-- .container -->
             </section>
-
+            <main id='jobs'>
 <!-- ------------------------------------------------------------------------------------------- -->
             <?php
             foreach($listjob as $job):
@@ -321,6 +322,7 @@
                 </div>
             </section>
             <?php endforeach ?>
+            </main>
 <!-- ------------------------------------------------------------------------------------------- -->
             <section class="section section-pricing bg-lighter" id="pricing">
                 <div class="container">
@@ -579,18 +581,6 @@
                 }
             };
             let url = "index.php?route=userApplyOffre&idOffre="+idOffer;
-            xml.open("GET", url, true);
-            xml.send();
-        }
-        function search(typeSearch){
-            let input = document.getElementById(typeSearch);
-            let url = "index.php?value="+input.value+"&type="+typeSearch+"&action=searchJob";
-            let xml = new XMLHttpRequest();
-            xml.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("articles").innerHTML=xml.responseText;
-                }
-            };
             xml.open("GET", url, true);
             xml.send();
         }

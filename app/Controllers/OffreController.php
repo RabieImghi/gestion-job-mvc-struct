@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers;
 use App\Models\JobModel;
+use App\Models\offreToApplyModel;
 class OffreController{
     public static function getOffre(){
         $listJobs = JobModel::getOffre();
@@ -27,6 +28,10 @@ class OffreController{
     public static function updateOffre($formData){
         extract($formData);
         JobModel::UpdateOffre($title,$description,$entreprise,$location,$IsActive,$approve,$id_Jobs);
+    }
+    public static function searchOffre($searchValue,$searchType){
+        $listjob=offreToApplyModel::SearchJob($searchValue,$searchType);
+        require(__DIR__ .'../../../view/user/offreSearch.php');
     }
 }
 ?>

@@ -35,5 +35,6 @@ class JobModel {
         $stmt->execute([$approve,$idOffer]);
         return $stmt; 
     }
+    
 }
 ?>

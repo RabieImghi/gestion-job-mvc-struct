@@ -1,7 +1,4 @@
 <?php
-
-
-
 session_start();
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -40,6 +37,8 @@ switch ($route) {
    
     //User Crud
     case 'homeUser':     UserContorller::index(); break;
+    case 'allOffre':     UserContorller::allOffre(); break;
+    case 'searchJob':     OffreController::searchOffre($_GET['value'],$_GET['type']); break;
     case 'home':     AdminContorller::index(); break;
     case 'candidat': AdminContorller::getCandidat(); break;
     case 'deletCondidat': AdminContorller::deletCondidat($_GET['deletCondidat']);  break;
@@ -51,10 +50,9 @@ switch ($route) {
     //Crude offreToApply
     case 'offreToApply': offreToApplyController::getOffreToApply();break;
     case 'userApplyOffre':offreToApplyController::userApplyOffre($_GET['idOffre']);break;
-    
-    
     default:
         header('HTTP/1.0 404 Not Found');
+        AdminContorller::errorPage();
         exit('Page not found');
 }
 

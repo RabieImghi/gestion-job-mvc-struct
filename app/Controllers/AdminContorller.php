@@ -40,6 +40,8 @@ class AdminContorller{
             return $collections = ['listUsers' => $listUsers , "RoleUsers" => $RoleUsers] ;
         } 
     }
-    
+    public static function errorPage(){
+        require(__DIR__.'../../../view/user/404-modern.html');
+    }
 }
 ?>

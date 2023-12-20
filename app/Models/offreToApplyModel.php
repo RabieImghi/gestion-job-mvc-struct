@@ -48,5 +48,13 @@ class offreToApplyModel {
         }
         else return false;
     }
+    public static function SearchJob($searchValue,$searchType){
+        $db = Database::getConnection();
+        $stmt = $db->prepare("SELECT * FROM jobs WHERE $searchType LIKE ?");
+        $search = "%$searchValue%";
+        $stmt->execute([$search]);
+        $result=$stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
 }
 ?>
