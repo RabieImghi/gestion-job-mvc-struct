@@ -1,14 +1,19 @@
 <?php
 namespace App\Controllers;
 use App\Models\UserModel;
-
+use App\Controllers\UserContorller;
 class AdminContorller{
     public static function index(){
         if(isset($_SESSION['roleUser'])){
-            if($_SESSION['roleUser']==1) require(__DIR__ .'../../../view/admin/index.php'); 
-            if($_SESSION['roleUser']==2)  require(__DIR__ .'../../../view/user/html/index.php');  
+            if($_SESSION['roleUser']==1) {
+                require(__DIR__ .'../../../view/admin/index.php');   
+            }
+            if($_SESSION['roleUser']==2) {
+                UserContorller::index();
+            } 
         }else{
-            require(__DIR__ .'../../../view/user/html/index.php'); 
+            UserContorller::index();
+            require(__DIR__ .'../../../view/user/index.php'); 
         }
         
     }

@@ -28,5 +28,17 @@ class UserModel {
         $result=$stmt->execute([$idCondidate]);
         if($result) return true;
     }
+    public static function getOffreList($nombreRow){
+        $db = Database::getConnection();
+        if($nombreRow=="n"){
+            $stmt=$db->prepare("SELECT * FROM jobs WHERE approve = 0");
+        }else{
+            $stmt=$db->prepare("SELECT * FROM jobs WHERE approve = 0 LIMIT ?");
+            $stmt->bindParam(1, $nombreRow, PDO::PARAM_INT);
+        }
+        $stmt->execute();
+        $jobs=$stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $jobs;
+    }
 }
 ?>

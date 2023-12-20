@@ -15,6 +15,7 @@ if(isset($_POST["submit"])){
     $submit = $_POST['submit'];
     switch($submit){
         //User 
+        case 'log_out': session_destroy(); break;
         case 'loginUser': $route = LoginController::loginUser($_POST);break;
         case 'registerUser':$_SESSION['tempPostRegister']=$_POST; $route=LoginController::registerUser($_POST);break;
         case 'verfyEmailRegistre':$route=LoginController::verfyEmailRegistre($_POST);break;
@@ -32,8 +33,9 @@ if(isset($_POST["submit"])){
 switch ($route) {
     //login
     case 'login': LoginController::login(); break;
-    case 'registre': LoginController::registre(); break;
+    case 'registre':   LoginController::registre(); break;
     case 'emailVerfy': LoginController::emailVerfy(); break;
+   
     
     //User Crud
     
