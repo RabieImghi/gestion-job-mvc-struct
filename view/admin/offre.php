@@ -10,7 +10,7 @@ $offre="active";
         <tr>
             <th>Image</th>
             <th>Title</th>
-            <th>description</th>
+            <!-- <th>description</th> -->
             <th>entreprise</th>
             <th>location</th>
             <th>Is Active</th>
@@ -35,12 +35,11 @@ $offre="active";
                     <p class="fw-bold mb-1 f_name"><?=$job['title'] ?></p>
                 </div>
             </td>
-            <td>
+            <!-- <td>
                 <p class="fw-normal mb-1 f_title"><?=$job['description'] ?> </p>
-            </td>
+            </td> -->
             <td>
-                <!-- <p class="fw-normal mb-1 f_title"><?=$job['entreprise'] ?> </p> -->
-                <a href="?route=offreDetail">ddddd</a>
+                <p class="fw-normal mb-1 f_title"><?=$job['entreprise'] ?> </p>
             </td>
             <td>
                 <p class="fw-normal mb-1 f_title"><?=$job['location'] ?> </p>
