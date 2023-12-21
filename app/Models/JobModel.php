@@ -35,6 +35,26 @@ class JobModel {
         $stmt->execute([$approve,$idOffer]);
         return $stmt; 
     }
+    public static function statistiqueOffre(){
+        $db = Database::getConnection();
+        $jobCount=$db->prepare("SELECT count(*) as totalJobs FROM jobs");
+        $jobCount->execute();
+        $jobCounts=$jobCount->fetch(PDO::FETCH_ASSOC);
+
+        $totalJobsActive=$db->prepare("SELECT count(*) as totalJobsActive FROM jobs WHERE IsActive=1");
+        $totalJobsActive->execute();
+        $totalJobsActives=$totalJobsActive->fetch(PDO::FETCH_ASSOC);
+
+        $totalJobsInActive=$db->prepare("SELECT count(*) as totalJobsInActive FROM jobs WHERE IsActive=0");
+        $totalJobsInActive->execute();
+        $totalJobsInActives=$totalJobsInActive->fetch(PDO::FETCH_ASSOC);
+
+        $Jobapprove=$db->prepare("SELECT count(*) as Jobapprove FROM jobs WHERE approve=1");
+        $Jobapprove->execute();
+        $Jobapproves=$Jobapprove->fetch(PDO::FETCH_ASSOC);
+        return $collection=[0=>$jobCounts,1=>$totalJobsActives,
+                            2=>$totalJobsInActives,3=>$Jobapproves];
+    }
     
 }
 ?>

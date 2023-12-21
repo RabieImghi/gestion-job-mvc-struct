@@ -33,5 +33,9 @@ class OffreController{
         $listjob=offreToApplyModel::SearchJob($searchValue,$searchType);
         require(__DIR__ .'../../../view/user/offreSearch.php');
     }
+    public static function statistiqueOffre(){
+        $statistique = JobModel::statistiqueOffre();
+        return $statistique;
+    }
 }
 ?>
