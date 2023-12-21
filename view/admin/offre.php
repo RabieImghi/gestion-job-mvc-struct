@@ -39,7 +39,8 @@ $offre="active";
                 <p class="fw-normal mb-1 f_title"><?=$job['description'] ?> </p>
             </td>
             <td>
-                <p class="fw-normal mb-1 f_title"><?=$job['entreprise'] ?> </p>
+                <!-- <p class="fw-normal mb-1 f_title"><?=$job['entreprise'] ?> </p> -->
+                <a href="?route=offreDetail">ddddd</a>
             </td>
             <td>
                 <p class="fw-normal mb-1 f_title"><?=$job['location'] ?> </p>
@@ -49,7 +50,40 @@ $offre="active";
             <td>
                 <img src="assets/img/user-x.svg" onclick="supremeConfirm(<?=$job['jobID']?>)" alt="">
                 <img class="ms-2 edit" data-bs-toggle="modal" data-bs-target="#edit<?=$indic?>" src="assets/img/edit.svg" alt="">
+                <img class="ms-2 edit" data-bs-toggle="modal" data-bs-target="#Descsri<?=$indic?>" src="assets/img/edit.svg" alt="">
             </td>
+            <div class="modal fade" id="Descsri<?=$indic?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog  modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form method='POST' action="index.php?route=offre">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">TinyMCE Editor</h5>
+                                        
+                                            <!-- TinyMCE Editor -->
+                                            <textarea class="tinymce-editor" name='descriptDetail'>
+                                            
+                                            </textarea>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="id_Jobs" value='<?=$job['jobID']?>'>
+                                <div class="d-flex w-100 justify-content-center">
+                                    <input type="submit" name='submit' value='updateOffreDescriptio' class="btn btn-success  mb-4 me-4">
+                                    <button type='button' class="btn btn-danger btn-block mb-4 " data-bs-dismiss="modal">Annuler</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="modal fade" id="edit<?=$indic?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog  modal-xl">
                     <div class="modal-content">

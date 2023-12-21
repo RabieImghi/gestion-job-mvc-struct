@@ -1,7 +1,10 @@
 <?php
 session_start();
 require_once __DIR__ . '/../vendor/autoload.php';
-
+if(isset($_GET['tet'])){
+    echo $_POST['testsss'];
+    die();
+}
 use App\Controllers\HomeController;
 use App\Controllers\LoginController;
 use App\Controllers\AdminContorller;
@@ -22,6 +25,8 @@ if(isset($_POST["submit"])){
         //Crud Offre
         case 'addOfferCrud': OffreController::addOffer($_POST);break;
         case 'updateOffre': OffreController::updateOffre($_POST);break;
+        case 'updateOffreDescriptio': OffreController::updateOffreDescriptio($_POST);break;
+
         //applu online
         
         case "aprouve" : offreToApplyController::reponseApply(1,$_POST['idOffer'],$_POST['username'],$_POST['email']); break;
@@ -46,7 +51,8 @@ switch ($route) {
     //Crud Offre
     case 'offre': OffreController::getOffre();  break;
     case 'deletOfre': OffreController::deletOfre($_GET['deletOfre']);  break;
-
+    case 'offreDetail': OffreController::offreDetail();  break;
+    
     //Crude offreToApply
     case 'offreToApply': offreToApplyController::getOffreToApply();break;
     case 'userApplyOffre':offreToApplyController::userApplyOffre($_GET['idOffre']);break;

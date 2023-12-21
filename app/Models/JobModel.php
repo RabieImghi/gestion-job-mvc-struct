@@ -29,6 +29,12 @@ class JobModel {
         $stmt->execute([$title,$description,$entreprise,$location,$IsActive,$approve,$id_Jobs]);
         return $stmt;
     }
+    public static function updateOffreDescriptio($description,$id_Jobs){
+        $db = Database::getConnection();
+        $stmt=$db->prepare("UPDATE jobs SET descriprtionDetail=? WHERE jobID =?");
+        $stmt->execute([$description,$id_Jobs]);
+        return $stmt;   
+    }
     public static function updateAprouve($idOffer,$approve){
         $db = Database::getConnection();
         $stmt=$db->prepare("UPDATE jobs SET approve=? WHERE jobID =?");

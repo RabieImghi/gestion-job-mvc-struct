@@ -29,6 +29,10 @@ class OffreController{
         extract($formData);
         JobModel::UpdateOffre($title,$description,$entreprise,$location,$IsActive,$approve,$id_Jobs);
     }
+    public static function updateOffreDescriptio($descriptop){
+        extract($descriptop);
+        JobModel::updateOffreDescriptio($descriptDetail,$id_Jobs);
+    }
     public static function searchOffre($searchValue,$searchType){
         $listjob=offreToApplyModel::SearchJob($searchValue,$searchType);
         require(__DIR__ .'../../../view/user/offreSearch.php');
@@ -36,6 +40,13 @@ class OffreController{
     public static function statistiqueOffre(){
         $statistique = JobModel::statistiqueOffre();
         return $statistique;
+    }
+    public static function offreDetail(){
+        $listJobs = JobModel::getOffre();
+        $tempActiveTable=[0=>"In Active",1=>"Active"];
+        $tempAprouveTable=[0=>"In Aprouve",1=>"Aprouve"];
+        $collection=["listJobs"=>$listJobs,"tempActiveTable"=>$tempActiveTable,"tempAprouveTable"=>$tempAprouveTable];
+        require(__DIR__ .'../../../view/admin/offreDetail.php');
     }
 }
 ?>
