@@ -57,7 +57,7 @@ switch ($route) {
     case 'offreToApply': offreToApplyController::getOffreToApply();break;
     case 'userApplyOffre':offreToApplyController::userApplyOffre($_GET['idOffre']);break;
     default:
-        header('HTTP/1.0 404 Not Found');
+        // header('HTTP/1.0 404 Not Found');
         AdminContorller::errorPage();
         exit('Page not found');
 }
