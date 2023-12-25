@@ -48,6 +48,7 @@ if(isset($_SESSION['roleUser']) && $_SESSION['roleUser']==1){
                                     <li class="menu-item"><a href="#pricing" class="menu-link nav-link">Pricing</a></li>
                                     <li class="menu-item"><a href="#reviews" class="menu-link nav-link">Reviews</a></li>
                                     <li class="menu-item"><a href="index.php?route=allOffre" class="menu-link nav-link">All Offre</a></li>
+                                    
                                 </ul>
                                 <ul class="menu-btns">
                                     <?php
